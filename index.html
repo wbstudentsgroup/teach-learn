@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T&L - Teach & Learn</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:20px;
+    background:
+    radial-gradient(circle at top left,#60a5fa 0%,transparent 25%),
+    radial-gradient(circle at bottom right,#38bdf8 0%,transparent 25%),
+    linear-gradient(135deg,#020617,#0f172a,#1e3a8a);
+    overflow-x:hidden;
+}
+
+body::before{
+    content:'';
+    position:fixed;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    top:-100px;
+    right:-100px;
+    filter:blur(80px);
+}
+
+body::after{
+    content:'';
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:rgba(59,130,246,0.15);
+    bottom:-100px;
+    left:-100px;
+    filter:blur(80px);
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    position:relative;
+    z-index:2;
+}
+
+/* Logo */
+
+.logo{
+    display:block;
+    width:130px;
+    margin:20px auto;
+}
+
+/* Badge */
+
+.badge{
+    width:max-content;
+    margin:0 auto 20px;
+    padding:10px 18px;
+    border-radius:50px;
+    color:white;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.1);
+    font-size:13px;
+}
+
+/* Heading */
+
+h1{
+    color:white;
+    text-align:center;
+    font-size:42px;
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:15px;
+}
+
+.subtitle{
+    color:#cbd5e1;
+    text-align:center;
+    max-width:700px;
+    margin:auto;
+    font-size:16px;
+    line-height:1.7;
+}
+
+/* Stats */
+
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+    margin:40px 0;
+}
+
+.stat{
+    text-align:center;
+}
+
+.stat h3{
+    color:white;
+    font-size:28px;
+}
+
+.stat p{
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+/* Cards */
+
+.cards{
+    display:flex;
+    gap:25px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:100%;
+    max-width:420px;
+    padding:30px;
+    border-radius:28px;
+
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.icon{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.card h2{
+    color:white;
+    margin-bottom:15px;
+    font-size:28px;
+}
+
+.card p{
+    color:#cbd5e1;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.card ul{
+    list-style:none;
+    margin-bottom:25px;
+}
+
+.card ul li{
+    color:white;
+    padding:8px 0;
+    font-size:15px;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    color:white;
+    padding:14px 26px;
+    border-radius:12px;
+    font-weight:700;
+    transition:.3s;
+    box-shadow:0 14px 30px rgba(56,189,248,0.22);
+}
+
+.btn:hover{
+    transform: translateY(-2px) scale(1.02);
+}
+
+.form-panel{
+    margin:40px auto 0;
+    max-width:920px;
+    padding:28px;
+    border-radius:28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.16);
+}
+
+.form-panel.hidden{
+    display:none;
+}
+
+.form-panel h3{
+    color:white;
+    margin-bottom:18px;
+    font-size:28px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.form-group label{
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    border:none;
+    border-radius:14px;
+    padding:14px 16px;
+    background:rgba(255,255,255,0.12);
+    color:white;
+    font-size:15px;
+    outline:none;
+}
+
+.form-group textarea{
+    resize:vertical;
+    min-height:120px;
+}
+
+.form-actions{
+    margin-top:20px;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.form-actions .btn{
+    background:#38bdf8;
+    color:#020617;
+}
+
+.footer {
+    color:#94a3b8;
+    margin-top:40px;
+    font-size:14px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    h1{
+        font-size:30px;
+    }
+
+    .subtitle{
+        font-size:14px;
+    }
+
+    .stats{
+        gap:20px;
+    }
+
+    .card{
+        padding:25px;
+    }
+
+    .card h2{
+        font-size:24px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-panel {
+        padding:20px;
+    }
+
+    .form-actions {
+        justify-content:center;
+    }
+
+    .form-actions .btn,
+    .btn {
+        width:100%;
+        text-align:center;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LOGO -->
+    <img
+    src="https://i.ibb.co/3mwF7110/e31a6f8a-e19f-4477-8cf0-459a1490de14.png"
+    class="logo"
+    alt="T&L Logo">
+
+    <!-- Badge -->
+    <div class="badge">
+        🇮🇳 Trusted Across West Bengal
+    </div>
+
+    <!-- Heading -->
+    <h1>West Bengal's Smartest Tutor Network</h1>
+
+    <p class="subtitle">
+        Connect students with trusted tutors nearby. Learn from home,
+        online, or at the tutor's place. Join T&L and make education
+        accessible across West Bengal.
+    </p>
+
+    <!-- Stats -->
+    <div class="stats">
+
+        <div class="stat">
+            <h3>500+</h3>
+            <p>Tutors</p>
+        </div>
+
+        <div class="stat">
+            <h3>100+</h3>
+            <p>Students</p>
+        </div>
+
+        <div class="stat">
+            <h3>23</h3>
+            <p>Districts</p>
+        </div>
+
+    </div>
+
+    <!-- Cards -->
+    <div class="cards">
+ <!-- Student Card -->
+        <div class="card">
+
+            <div class="icon">📚</div>
+
+            <h2>Find a Tutor</h2>
+
+            <p>
+                Discover experienced tutors for school education,
+                competitive exams, college courses and skill-based
+                learning in your area.
+            </p>
+
+            <ul>
+                <li>✔ Verified Tutors</li>
+                <li>✔ Home Tuition Available</li>
+                <li>✔ Online Learning Support</li>
+                <li>✔ Affordable Pricing</li>
+                <li>✔ Learn from Experts</li>
+            </ul>
+
+            <a href="#" class="btn" id="findTutorBtn">Find Tutor</a>
+
+        </div>
+        <!-- Tutor Card -->
+        <div class="card">
+
+            <div class="icon">🎓</div>
+
+            <h2>Become a Tutor</h2>
+
+            <p>
+                Turn your knowledge into income. Teach students near
+                your location, conduct online classes, or offer home
+                tuition according to your schedule.
+            </p>
+
+            <ul>
+                <li>✔ Flexible Working Hours</li>
+                <li>✔ Online & Offline Teaching</li>
+                <li>✔ Find Nearby Students</li>
+                <li>✔ Earn Additional Income</li>
+                <li>✔ Build Your Teaching Profile</li>
+            </ul>
+
+            <a href="#" class="btn" id="joinTutorBtn">Join as Tutor</a>
+
+        </div>
+    </div>
+
+    <div class="form-panel hidden" id="tutorFormPanel">
+        <h3>Join as a Tutor</h3>
+        <p style="color:#cbd5e1; margin-bottom:20px;">Share your details so we can help nearby students connect with you.</p>
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="tutorName">Name</label>
+                <input type="text" id="tutorName" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="tutorQualification">Qualification</label>
+                <input type="text" id="tutorQualification" placeholder="e.g. B.Sc, B.Ed, MA, MCA">
+            </div>
+            <div class="form-group">
+                <label for="tutorSubjects">Subjects / Classes</label>
+                <input type="text" id="tutorSubjects" placeholder="e.g. Maths, Science, English">
+            </div>
+            <div class="form-group">
+                <label for="tutorAddress">Address / Location</label>
+                <textarea id="tutorAddress" placeholder="City, locality, pin code"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="tutorContact">Phone / Email</label>
+                <input type="text" id="tutorContact" placeholder="Mobile or email address">
+            </div>
+            <div class="form-group">
+                <label for="tutorExperience">Experience (optional)</label>
+                <input type="text" id="tutorExperience" placeholder="e.g. 2 years teaching">
+            </div>
+        </div>
+        <div class="form-actions">
+            <a href="#" class="btn" id="submitTutor">Submit Tutor Request</a>
+        </div>
+    </div>
+
+    <div class="form-panel hidden" id="studentFormPanel">
+        <h3>Find a Tutor</h3>
+        <p style="color:#cbd5e1; margin-bottom:20px;">Tell us what you need so we can match you with nearby tutors.</p>
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="studentName">Your Name</label>
+                <input type="text" id="studentName" placeholder="Enter student or guardian name">
+            </div>
+            <div class="form-group">
+                <label for="studentLocation">Location / Address</label>
+                <textarea id="studentLocation" placeholder="City, locality, pin code"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="studentClass">Class / Subject</label>
+                <input type="text" id="studentClass" placeholder="e.g. Class 10 Maths">
+            </div>
+            <div class="form-group">
+                <label for="studentTutorType">Preferred Tutor Type</label>
+                <select id="studentTutorType">
+                    <option value="">Select one</option>
+                    <option>Home tuition</option>
+                    <option>Online tuition</option>
+                    <option>Both</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="studentContact">Phone / Email</label>
+                <input type="text" id="studentContact" placeholder="Mobile or email address">
+            </div>
+            <div class="form-group">
+                <label for="studentRequirements">Additional Notes</label>
+                <textarea id="studentRequirements" placeholder="Any student preferences or timing"></textarea>
+            </div>
+        </div>
+        <div class="form-actions">
+            <a href="#" class="btn" id="submitStudent">Submit Tutor Request</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 T&L (Teach & Learn) • Connecting Students & Tutors Across West Bengal
+    </div>
+
+</div>
+
+<script>
+    const findTutorBtn = document.getElementById('findTutorBtn');
+    const joinTutorBtn = document.getElementById('joinTutorBtn');
+    const studentFormPanel = document.getElementById('studentFormPanel');
+    const tutorFormPanel = document.getElementById('tutorFormPanel');
+
+    function showPanel(panel) {
+        studentFormPanel.classList.add('hidden');
+        tutorFormPanel.classList.add('hidden');
+        panel.classList.remove('hidden');
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    if (findTutorBtn) {
+        findTutorBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            showPanel(studentFormPanel);
+        });
+    }
+
+    if (joinTutorBtn) {
+        joinTutorBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            showPanel(tutorFormPanel);
+        });
+    }
+</script>
+
+</body>
+</html>
